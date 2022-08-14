@@ -3,7 +3,7 @@ pipeline{
     environment{
         scannerHome = tool 'sonar_scanner_dotnet'
         username='admin'
-        appname='NAGPDevOpsTest1'   
+        appname='sonar-ravindrakumar'   
         
     }
     options {
@@ -13,8 +13,8 @@ pipeline{
         stage('Start') {
             steps {
                 // Get some code from a GitHub repository sqp_1c72c17192926983467e8beb15cc5bcd1cd19ed4
-                echo 'Starting code check out'https://github.com/ravindrahbtik11/app_ravindrakumar/
-                git branch: 'master', url: 'https://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@github.com/ravindrahbtik11/app_ravindrakumar.git'
+                echo 'Starting code check out'
+                git branch: 'master', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
                  echo 'Code check out Finished'
             }
         }
@@ -29,7 +29,7 @@ pipeline{
             steps {
                 echo 'Start Sonar qube analysis'
                     withSonarQubeEnv('Test_Sonar') {
-                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"NAGPDevops2022Demo\" /d:sonar.login=\"squ_dbe138c55e8feccac167c2a053d72b3fe6231deb\""
+                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
                     }
                 echo 'Start Sonar qube analysis'
             }
@@ -53,7 +53,7 @@ pipeline{
                 steps {
                 echo 'Stopping Sonar Qube analysis'
                   withSonarQubeEnv('Test_Sonar') {
-                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"squ_dbe138c55e8feccac167c2a053d72b3fe6231deb\""
+                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
                     }
                 echo 'Stopped Sonar Qube analysis'
                 }
@@ -86,8 +86,8 @@ pipeline{
         failure{
             echo 'I run when you are fail.'
         }
-    //    changed{
-    //         echo 'I run when you are fail.'
+    //    changed{ squ_dbe138c55e8feccac167c2a053d72b3fe6231deb
+    //         echo 'I run when you are fail.'  sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84
     //     }
     }
     
