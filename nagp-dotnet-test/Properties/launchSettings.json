@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "nagp-dotnet-test": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

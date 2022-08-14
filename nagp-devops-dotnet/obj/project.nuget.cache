@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2PYq06RUD+ZYAmd3KT4Z5UU9t2fVkwyjgqaCZAXoAe9JUoyTkUpCvtHGTgleOtn55eiwUHC3D7onP7JtNh8pHA==",
+  "success": true,
+  "projectFilePath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ravindra1436\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
+  "logs": []
+}
