@@ -3,11 +3,7 @@ pipeline{
     environment{
         scannerHome = tool 'sonar_scanner_dotnet'
         username='admin'
-        appname='NAGPDevOpsTest1'
-        //dockerHome = tool 'mydocker'        
-        //MSBuildHome = tool 'MsBuildDotNet' 
-        // PATH = "$dockerHome/bin:$MSBuildHome/bin:$PATH"
-        // dockerhub = credentials('DockerDetail')
+        appname='NAGPDevOpsTest1'   
         
     }
     options {
@@ -17,8 +13,8 @@ pipeline{
         stage('Start') {
             steps {
                 // Get some code from a GitHub repository sqp_1c72c17192926983467e8beb15cc5bcd1cd19ed4
-                echo 'Starting code check out'
-                git branch: 'main', url: 'https://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@github.com/ravindrahbtik11/NAGPDevops2022Demo.git'
+                echo 'Starting code check out'https://github.com/ravindrahbtik11/app_ravindrakumar/
+                git branch: 'master', url: 'https://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@github.com/ravindrahbtik11/app_ravindrakumar.git'
                  echo 'Code check out Finished'
             }
         }
