@@ -1,10 +1,15 @@
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+#FROM mcr.microsoft.com/dotnet/aspnet:runtime:5.0 AS base
+#WORKDIR /app
+FROM mcr.microsoft.com/dotnet/runtime:5.0 AS base
 WORKDIR /app
+
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+#FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
 WORKDIR /src
 COPY ["nagp-devops-dotnet/nagp-devops-dotnet.csproj", "nagp-devops-dotnet/"]
 RUN dotnet restore "nagp-devops-dotnet/nagp-devops-dotnet.csproj"
