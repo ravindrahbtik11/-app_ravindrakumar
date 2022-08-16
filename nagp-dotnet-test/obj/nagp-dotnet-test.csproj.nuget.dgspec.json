@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-dotnet-test\\nagp-dotnet-test.csproj": {}
+    "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-dotnet-test\\nagp-dotnet-test.csproj": {}
   },
   "projects": {
-    "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj": {
+    "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj",
+        "projectUniqueName": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj",
         "projectName": "nagp-devops-dotnet",
-        "projectPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj",
+        "projectPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj",
         "packagesPath": "C:\\Users\\ravindra1436\\.nuget\\packages\\",
-        "outputPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\obj\\",
+        "outputPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-devops-dotnet\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -71,14 +71,14 @@
         }
       }
     },
-    "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-dotnet-test\\nagp-dotnet-test.csproj": {
+    "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-dotnet-test\\nagp-dotnet-test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-dotnet-test\\nagp-dotnet-test.csproj",
+        "projectUniqueName": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-dotnet-test\\nagp-dotnet-test.csproj",
         "projectName": "nagp-dotnet-test",
-        "projectPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-dotnet-test\\nagp-dotnet-test.csproj",
+        "projectPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-dotnet-test\\nagp-dotnet-test.csproj",
         "packagesPath": "C:\\Users\\ravindra1436\\.nuget\\packages\\",
-        "outputPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-dotnet-test\\obj\\",
+        "outputPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-dotnet-test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -99,8 +99,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj": {
-                "projectPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\nagp-devops-dotnet\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj"
+              "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj": {
+                "projectPath": "D:\\Miscellaneous\\Ravindra\\StudyMaterial\\NAGP\\Assignment\\Final\\master\\nagp-devops-dotnet\\nagp-devops-dotnet.csproj"
               }
             }
           }
