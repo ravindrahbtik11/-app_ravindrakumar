@@ -26,11 +26,11 @@ pipeline{
                 echo 'Build success'
             }
         }        
-        stage('Build and Push Docker Image'){
+        stage('Release artfact'){
             steps {
                     script{
                          echo 'Start building Docker image'
-                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-develop:${BUILD_NUMBER}")
+                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-develop-demo:${BUILD_NUMBER}")
                           echo 'Image building done'
                           echo 'Start pushing Docker image'
                           docker.withRegistry( '', 'DockerDetail' ) {
@@ -38,6 +38,19 @@ pipeline{
                             }
                             echo 'Image pushing done'
                         }
+                }
+         }
+		stage('Kubernetes deployment'){
+            steps {
+                    echo 'Connecting to cluster'
+                    bat "gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300"
+					echo 'Connected' 
+					echo 'Creating Config Map' 
+                    bat 'kubectl apply -f .\\deployment.yml'
+					echo 'Config Map created' 
+				    echo 'Creating Deployment' 
+                    bat 'kubectl apply -f .\\deployment.yml'
+					echo 'Deployment created' 
                 }
          }
        

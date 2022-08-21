@@ -4,6 +4,5 @@ metadata:
   name: dotnet-develop-config
   namespace: kubernetes-cluster-ravindrakumar
 data:
-  username: ravindrakumar
-  email: ravindra.kumar@nagarro.com
+  username: Ravindra Kumar
   environment: dev
