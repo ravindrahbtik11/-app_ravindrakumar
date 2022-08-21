@@ -62,7 +62,7 @@ pipeline{
             steps {
                     script{
                          echo 'Start building Docker image'
-                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master-demo:${BUILD_NUMBER}")
+                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
                           echo 'Image building done'
                           echo 'Start pushing Docker image'
                           docker.withRegistry( '', 'DockerDetail' ) {
