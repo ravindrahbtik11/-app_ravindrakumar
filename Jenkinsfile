@@ -88,8 +88,7 @@ pipeline{
          }
 		 stage('End'){
 			 steps{
-				 post{
-						always{
+				always{
 							echo 'I am awsome. I run always'
 						}
 						success{
@@ -97,8 +96,7 @@ pipeline{
 						}
 						failure{
 							 mail(to: 'ravindra.kumar@nagarro.com', subject: "Fail", body: "Something is wrong.")
-						}			
-					}
+						}	
 			 }
 		  		 
 		 }       
