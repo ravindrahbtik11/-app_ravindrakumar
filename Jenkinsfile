@@ -78,8 +78,11 @@ pipeline{
                     bat "gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300"
 					echo 'Connected' 
 					echo 'Creating Config Map' 
-                    bat 'kubectl apply -f .\\deployment.yml'
+                    bat 'kubectl apply -f .\\configmap.yml'
 					echo 'Config Map created' 
+					echo 'Creating Secret' 
+                    bat 'kubectl apply -f .\\secret.yml'
+					echo 'Secret created'
 				    echo 'Creating Deployment' 
                     bat 'kubectl apply -f .\\deployment.yml'
 					echo 'Deployment created' 
