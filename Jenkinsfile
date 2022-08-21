@@ -9,7 +9,7 @@ pipeline{
                 // Get some code from a GitHub repository sqp_1c72c17192926983467e8beb15cc5bcd1cd19ed4
                 echo 'Starting code check out'
                 git branch: 'develop', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
-                 echo 'Code check out Finished'
+                echo 'Code check out Finished'
             }
         }
        stage('Nuget restore'){
