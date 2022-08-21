@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nagp-dotnet-dev
-        image: ravindrahbtik11/i-ravindrakumar-develop-demo:latest
+        image: ravindrahbtik11/i-ravindrakumar-develop:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
