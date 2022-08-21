@@ -24,16 +24,21 @@ spec:
             configMapKeyRef:  
               name: dotnet-develop-config  
               key: username  
-        - name: DEVOPS_USER_EMAIL  
-          valueFrom:  
-            configMapKeyRef:  
-              name: dotnet-develop-config  
-              key: email
         - name: DEVOPS_USER_ENV  
           valueFrom:  
             configMapKeyRef:  
               name: dotnet-develop-config  
-              key: environment              
+              key: environment
+        - name: DEVOPS_USER_ID  
+          valueFrom:  
+            secretKeyRef:  
+              name: dotnet-develop-secret  
+              key: userid  
+        - name: DEVOPS_USER_PASS  
+          valueFrom:  
+            secretKeyRef:  
+              name: dotnet-develop-secret  
+              key: password              
   replicas: 4
   selector:
     matchLabels:
