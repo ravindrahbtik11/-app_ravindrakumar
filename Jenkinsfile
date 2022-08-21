@@ -28,7 +28,7 @@ pipeline{
             steps {
                 echo 'Start Sonar qube analysis'
                     withSonarQubeEnv('Test_Sonar') {
-                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"squ_dbe138c55e8feccac167c2a053d72b3fe6231deb\""
+                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
                     }
                 echo 'Start Sonar qube analysis'
             }
@@ -52,7 +52,7 @@ pipeline{
                 steps {
                 echo 'Stopping Sonar Qube analysis'
                   withSonarQubeEnv('Test_Sonar') {
-                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"squ_dbe138c55e8feccac167c2a053d72b3fe6231deb\""
+                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
                     }
                 echo 'Stopped Sonar Qube analysis'
                 }
