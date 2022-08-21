@@ -64,7 +64,7 @@ pipeline{
                           echo 'Image built'
                           echo 'Start pushing Docker image'
                           docker.withRegistry( '', 'DockerDetail' ) {
-                                 dockerImage.push() 
+                                 dockerImage.push('latest') 
                             }
                             echo 'Image pushed'
                         }
