@@ -33,7 +33,17 @@ spec:
           valueFrom:  
             configMapKeyRef:  
               name: dotnet-master-config  
-              key: environment              
+              key: environment
+        - name: DEVOPS_USER_ID  
+          valueFrom:  
+            secretKeyRef:  
+              name: dotnet-master-secret  
+              key: userid  
+        - name: DEVOPS_USER_PASS  
+          valueFrom:  
+            secretKeyRef:  
+              name: dotnet-master-secret  
+              key: password                           
   replicas: 4
   selector:
     matchLabels:
