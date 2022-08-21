@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nagp-dotnet-dev
+  name: nagp-dotnet-prod
   namespace: kubernetes-cluster-ravindrakumar
   labels:
-    app: nagp-dotnet-dev
+    app: nagp-dotnet-prod
 spec:
   template:
     metadata:
       labels:
-        app: nagp-dotnet-dev
-        type: develop
+        app: nagp-dotnet-prod
+        type: master
     spec:
       containers:
-      - name: nagp-dotnet-dev
+      - name: nagp-dotnet-prod
         image: ravindrahbtik11/i-ravindrakumar-develop-dotnet:v3
         imagePullPolicy: IfNotPresent
         ports:
@@ -22,23 +22,23 @@ spec:
         - name: DEVOPS_USER_NAME  
           valueFrom:  
             configMapKeyRef:  
-              name: dotnet-develop-config  
+              name: dotnet-master-config  
               key: username  
         - name: DEVOPS_USER_EMAIL  
           valueFrom:  
             configMapKeyRef:  
-              name: dotnet-develop-config  
+              name: dotnet-master-config  
               key: email
         - name: DEVOPS_USER_ENV  
           valueFrom:  
             configMapKeyRef:  
-              name: dotnet-develop-config  
+              name: dotnet-master-config  
               key: environment              
   replicas: 4
   selector:
     matchLabels:
-      app: nagp-dotnet-dev
-      type: develop
+      app: nagp-dotnet-prod
+      type: master
         
         
 ---
@@ -47,18 +47,18 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: nagp-dotnet-dev
-  name: nagp-dotnet-dev
+    app: nagp-dotnet-prod
+  name: nagp-dotnet-prod
   namespace: kubernetes-cluster-ravindrakumar
 spec:
   ports:
-  - nodePort: 31110
+  - nodePort: 32567
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    app: nagp-dotnet-dev
-    type: develop
+    app: nagp-dotnet-prod
+    type: master
   sessionAffinity: None
   type: LoadBalancer
 

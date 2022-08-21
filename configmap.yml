@@ -1,9 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: dotnet-develop-config
+  name: dotnet-master-config
   namespace: kubernetes-cluster-ravindrakumar
 data:
-  username: ravindrakumar
-  email: ravindra.kumar@nagarro.com
-  environment: dev
+  username: Ravindra Kumar
+  environment: prod
