@@ -59,7 +59,7 @@ pipeline{
         stage('Release artfact'){
             steps {
                     script{
-                         echo 'Start building Docker image'
+                          echo 'Start building Docker image'
                           dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
                           echo 'Image built'
                           echo 'Start pushing Docker image'
