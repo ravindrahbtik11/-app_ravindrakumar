@@ -3,7 +3,7 @@ pipeline{
     environment{
         scannerHome = tool 'sonar_scanner_dotnet'
         username='admin'
-        appname='NAGPDevOpsTest1'   
+        appname='sonar-ravindrakumar'   
     }
     options {
         skipDefaultCheckout(true)
@@ -28,7 +28,7 @@ pipeline{
             steps {
                 echo 'Start Sonar qube analysis'
                     withSonarQubeEnv('Test_Sonar') {
-                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"NAGPDevops2022Demo\" /d:sonar.login=\"squ_dbe138c55e8feccac167c2a053d72b3fe6231deb\""
+                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"squ_dbe138c55e8feccac167c2a053d72b3fe6231deb\""
                     }
                 echo 'Start Sonar qube analysis'
             }
