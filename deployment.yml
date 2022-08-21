@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nagp-dotnet-prod
-        image: ravindrahbtik11/i-ravindrakumar-develop-dotnet:v3
+        image: ravindrahbtik11/i-ravindrakumar-master:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -23,12 +23,7 @@ spec:
           valueFrom:  
             configMapKeyRef:  
               name: dotnet-master-config  
-              key: username  
-        - name: DEVOPS_USER_EMAIL  
-          valueFrom:  
-            configMapKeyRef:  
-              name: dotnet-master-config  
-              key: email
+              key: username
         - name: DEVOPS_USER_ENV  
           valueFrom:  
             configMapKeyRef:  
