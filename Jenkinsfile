@@ -11,7 +11,6 @@ pipeline{
     stages{
         stage('Start') {
             steps {
-                // Get some code from a GitHub repository sqp_1c72c17192926983467e8beb15cc5bcd1cd19ed4
                 echo 'Starting code check out'
                 git branch: 'master', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
                  echo 'Code check out Finished'
@@ -30,7 +29,7 @@ pipeline{
                     withSonarQubeEnv('Test_Sonar') {
                     bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
                     }
-                echo 'Start Sonar qube analysis'
+                echo 'Finished Sonar qube analysis'
             }
         }
 
@@ -43,8 +42,7 @@ pipeline{
         }
 
         stage('Test case execution'){
-            steps {
-                 echo 'test'
+            steps {                
                  bat "dotnet test"
             }
         }
@@ -63,7 +61,7 @@ pipeline{
                     script{
                          echo 'Start building Docker image'
                           dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
-                          echo 'Image building done'
+                          echo 'Image built'
                           echo 'Start pushing Docker image'
                           docker.withRegistry( '', 'DockerDetail' ) {
                                  dockerImage.push() 
@@ -75,7 +73,7 @@ pipeline{
 		 stage('Kubernetes deployment'){
             steps {
                     echo 'Connecting to cluster'
-                    bat "gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300"
+                    bat 'gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300'
 					echo 'Connected' 
 					echo 'Creating Config Map' 
                     bat 'kubectl apply -f .\\configmap.yml'
@@ -88,22 +86,19 @@ pipeline{
 					echo 'Deployment created' 
                 }
          }
-       
-    }
-    post{
-        always{
-            echo 'I am awsome. I run always'
-            //write to logout docker
-        }
-        success{
-            echo 'I run when you are Successful'
-        }
-        failure{
-            echo 'I run when you are fail.'
-        }
-    //    changed{
-    //         echo 'I run when you are fail.'
-    //     }
-    }
-    
+		 stage('End'){
+		  post{
+				always{
+					echo 'I am awsome. I run always'
+					//write to logout docker
+				}
+				success{
+					echo 'I run when you are Successful'
+				}
+				failure{
+					echo 'I run when you are fail.'
+				}			
+			}		 
+		 }       
+    }    
 }
