@@ -75,6 +75,8 @@ pipeline{
                     echo 'Connecting to cluster'
                     bat 'gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300'
 					echo 'Connected' 
+					echo 'Deleting existing deployment' 
+					bat 'kubectl delete -f .\\deployment.yml'
 					echo 'Creating Config Map' 
                     bat 'kubectl apply -f .\\configmap.yml'
 					echo 'Config Map created' 
