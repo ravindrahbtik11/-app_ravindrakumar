@@ -43,7 +43,7 @@ pipeline{
 		stage('Kubernetes deployment'){
             steps {
                     echo 'Connecting to cluster'
-                    bat "gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300"
+                    bat 'gcloud container clusters get-credentials kubernetes-cluster --zone us-central1-c --project nagp48300'
 					echo 'Connected' 
 					echo 'Creating Config Map' 
                     bat 'kubectl apply -f .\\configmap.yml'
@@ -56,22 +56,12 @@ pipeline{
 					echo 'Deployment created' 
                 }
          }
+		 stage('End'){
+            steps {
+                    echo 'Success'
+                }
+         }
        
     }
-    post{
-        always{
-            echo 'I am awsome. I run always'
-            //write to logout docker
-        }
-        success{
-            echo 'I run when you are Successful'
-        }
-        failure{
-            echo 'I run when you are fail.'
-        }
-    //    changed{
-    //         echo 'I run when you are fail.'
-    //     }
-    }
-    
+     
 }
