@@ -27,7 +27,7 @@ pipeline{
             steps {
                 echo 'Start Sonar qube analysis'
                     withSonarQubeEnv('Test_Sonar') {
-                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
+                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"sqp_8a4757ac26cf4d35c838f75709208e83cbb39aa3\""
                     }
                 echo 'Finished Sonar qube analysis'
             }
@@ -50,13 +50,41 @@ pipeline{
                 steps {
                 echo 'Stopping Sonar Qube analysis'
                   withSonarQubeEnv('Test_Sonar') {
-                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"sqp_c18f63960a2505f4912fbde8ae301342d4ef4a84\""
+                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"sqp_8a4757ac26cf4d35c838f75709208e83cbb39aa3\""
+					   
                     }
                 echo 'Stopped Sonar Qube analysis'
                 }
             }
         
-        
+        stage('Release artfact'){
+            steps {
+                    script{
+                          echo 'Start building Docker image'
+                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
+                          echo 'Image built'
+                          echo 'Start pushing Docker image'
+                          docker.withRegistry( '', 'DockerDetail' ) {
+                                 dockerImage.push('latest') 
+                            }
+                            echo 'Image pushed'
+                        }
+                }
+         }
+		 stage('Kubernetes deployment'){
+            steps {
+                    			
+					echo 'Creating Config Map' 
+                    bat 'kubectl apply -f .\\configmap.yml'
+					echo 'Config Map created' 
+					echo 'Creating Secret' 
+                    bat 'kubectl apply -f .\\secret.yml'
+					echo 'Secret created'
+				    echo 'Creating Deployment' 
+                    bat 'kubectl apply -f .\\deployment.yml'
+					echo 'Deployment created' 
+                }
+         }
 		 stage('End'){
 			 steps{
 				echo 'Success'				
