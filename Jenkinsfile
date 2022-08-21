@@ -93,10 +93,10 @@ pipeline{
 							echo 'I am awsome. I run always'
 						}
 						success{
-							echo 'I run when you are Successful'
+							mail(to: 'ravindra.kumar@nagarro.com', subject: "Success", body: "Build and deplyed successfully.")
 						}
 						failure{
-							echo 'I run when you are fail.'
+							 mail(to: 'ravindra.kumar@nagarro.com', subject: "Fail", body: "Something is wrong.")
 						}			
 					}
 			 }
