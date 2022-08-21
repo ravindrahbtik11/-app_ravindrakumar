@@ -56,34 +56,7 @@ pipeline{
                 }
             }
         
-        stage('Release artfact'){
-            steps {
-                    script{
-                          echo 'Start building Docker image'
-                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
-                          echo 'Image built'
-                          echo 'Start pushing Docker image'
-                          docker.withRegistry( '', 'DockerDetail' ) {
-                                 dockerImage.push('latest') 
-                            }
-                            echo 'Image pushed'
-                        }
-                }
-         }
-		 stage('Kubernetes deployment'){
-            steps {
-                    			
-					echo 'Creating Config Map' 
-                    bat 'kubectl apply -f .\\configmap.yml'
-					echo 'Config Map created' 
-					echo 'Creating Secret' 
-                    bat 'kubectl apply -f .\\secret.yml'
-					echo 'Secret created'
-				    echo 'Creating Deployment' 
-                    bat 'kubectl apply -f .\\deployment.yml'
-					echo 'Deployment created' 
-                }
-         }
+        
 		 stage('End'){
 			 steps{
 				echo 'Success'				
