@@ -88,15 +88,7 @@ pipeline{
          }
 		 stage('End'){
 			 steps{
-				always{
-							echo 'I am awsome. I run always'
-						}
-						success{
-							mail(to: 'ravindra.kumar@nagarro.com', subject: "Success", body: "Build and deplyed successfully.")
-						}
-						failure{
-							 mail(to: 'ravindra.kumar@nagarro.com', subject: "Fail", body: "Something is wrong.")
-						}	
+				echo 'Success'				
 			 }
 		  		 
 		 }       
