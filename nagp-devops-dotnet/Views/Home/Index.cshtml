@@ -1,8 +1,21 @@
-﻿@{
+﻿@using System.Collections
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to NAGP Devops 2022</h1>
+    <p>Environment Variables:</p>
+    <ul>
+        @{
+            foreach (DictionaryEntry envVar in Environment.GetEnvironmentVariables())
+            {
+                if(envVar.Key.ToString().Contains("DEVOPS_USER"))
+                {
+                      <li>@String.Format("  {0} = {1}", envVar.Key, envVar.Value)</li>
+                }              
+            }
+    }
+    </ul>
+      
 </div>
