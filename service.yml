@@ -14,5 +14,4 @@ spec:
   selector:
     app: nagp-dotnet-master
     type: master
-  sessionAffinity: None
   type: LoadBalancer

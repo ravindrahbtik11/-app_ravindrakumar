@@ -61,23 +61,22 @@ pipeline{
         
 		 stage('Kubernetes deployment'){
             steps {
-					 script{
-						try {
-							  echo '**Start building Docker image**'
-							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
-							  echo '****Image built****'
-							  echo '**Start pushing Docker image**'
-							  docker.withRegistry( '', 'DockerDetail' ) {
-									 dockerImage.push('latest') 
-								}
-							  echo '****Image pushed****'
-							} catch (Throwable e) {
-								echo "Caught ${e.toString()}"
-								currentBuild.result = "SUCCESS" 
-							}
+					//  script{
+					// 	try {
+					// 		  echo '**Start building Docker image**'
+					// 		  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
+					// 		  echo '****Image built****'
+					// 		  echo '**Start pushing Docker image**'
+					// 		  docker.withRegistry( '', 'DockerDetail' ) {
+					// 				 dockerImage.push('latest') 
+					// 			}
+					// 		  echo '****Image pushed****'
+					// 		} catch (Throwable e) {
+					// 			echo "Caught ${e.toString()}"
+					// 			currentBuild.result = "SUCCESS" 
+					// 		}
 						 
-						}
-						
+					// 	}						
 										
 					echo '**Creating Config Map**' 
                     bat 'kubectl apply -f .\\configmap.yml'
