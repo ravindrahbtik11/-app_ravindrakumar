@@ -64,7 +64,6 @@ spec:
   selector:
     app: nagp-dotnet-dev
     type: develop
-  sessionAffinity: None
   type: LoadBalancer
 
       

@@ -9,7 +9,7 @@ pipeline{
         stage('Start') {
             steps {
                 echo '**Starting code check out**'
-                git branch: 'master', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
+                git branch: 'develop', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
                 echo '****Code check out Finished****'
             }
         }
@@ -32,7 +32,7 @@ pipeline{
                     script{
 						try {
                               echo '**Start building Docker image**'
-							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
+							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-develop:latest")
 							  echo '****Image built****'
 							  echo '**Start pushing Docker image**'
 							  docker.withRegistry( '', 'DockerDetail' ) {
@@ -47,8 +47,7 @@ pipeline{
                 }
 	 }
 	 stage('Kubernetes deployment'){
-		steps {
-				
+		steps {			
 								
 				echo '**Creating Config Map**' 
 				bat 'kubectl apply -f .\\configmap.yml'
