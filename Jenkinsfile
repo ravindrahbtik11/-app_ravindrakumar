@@ -7,6 +7,8 @@ pipeline{
     }
     options {
         skipDefaultCheckout(true)
+		timeout(time: 30, unit: 'MINUTES') 
+        buildDiscarder(logRotator(numToKeepStr:'5', artifactNumToKeepStr: '5'))
     }
     stages{
         stage('Start') {
@@ -26,8 +28,8 @@ pipeline{
     stage('Start sonarqube analysis') {
             steps {
                 echo 'Start Sonar qube analysis'
-                    withSonarQubeEnv('Test_Sonar') {
-                    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\" /d:sonar.login=\"sqp_3a430b6b79fdeb56e20d3481f922c90afe42f6b8\""
+                    withSonarQubeEnv('Test_Sonar') {					
+				    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\""
                     }
                 echo 'Finished Sonar qube analysis'
             }
@@ -50,7 +52,7 @@ pipeline{
                 steps {
                 echo 'Stopping Sonar Qube analysis'
                   withSonarQubeEnv('Test_Sonar') {
-                       bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end /d:sonar.login=\"sqp_3a430b6b79fdeb56e20d3481f922c90afe42f6b8\""
+                        bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end"
 					   
                     }
                 echo 'Stopped Sonar Qube analysis'
