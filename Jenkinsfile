@@ -49,7 +49,7 @@ pipeline{
 	 stage('Kubernetes deployment'){
 		steps {
 				
-				gcloud auth login					
+				bat 'gcloud auth login'					
 				echo '**Creating Config Map**' 
 				bat 'kubectl apply -f .\\configmap.yml'
 				echo '****Config Map created****' 
