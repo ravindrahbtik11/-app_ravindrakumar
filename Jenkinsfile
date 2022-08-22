@@ -11,35 +11,35 @@ pipeline{
         buildDiscarder(logRotator(numToKeepStr:'5', artifactNumToKeepStr: '5'))
     }
     stages{
-        stage('Start') {
-            steps {
-                echo 'Starting code check out'
-                git branch: 'master', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
-                 echo 'Code check out Finished'
-            }
-        }
-    stage('Nuget restore'){
-            steps{
-                    echo 'Start restoring packages'
-                    bat "dotnet restore"
-                    echo 'Restore Nuget success'
-                }
-        }
-    stage('Start sonarqube analysis') {
-            steps {
-                echo 'Start Sonar qube analysis'
-                    withSonarQubeEnv('Test_Sonar') {					
-				    bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\""
-                    }
-                echo 'Finished Sonar qube analysis'
-            }
-        }
+		stage('Start') {
+			steps {
+				echo '**Starting code check out**'
+				git branch: 'master', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
+				 echo '****Code check out Finished****'
+			}
+		}
+		stage('Nuget restore'){
+				steps{
+						echo '**Start restoring packages**'
+						bat "dotnet restore"
+						echo '****Restore Nuget success****'
+					}
+			}
+		stage('Start sonarqube analysis') {
+				steps {
+					echo '**Start Sonar qube analysis**'
+						withSonarQubeEnv('Test_Sonar') {					
+							bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll begin /k:\"sonar-ravindrakumar\""
+						}
+					echo '****Finished Sonar qube analysis****'
+				}
+			}
 
-    stage('Code build'){
+		stage('Code build'){
             steps {
-                echo 'Build solution'
+                echo '**Build solution**'
                 bat "dotnet build"
-                echo 'Build success'
+                echo '****Build success****'
             }
         }
 
@@ -50,46 +50,49 @@ pipeline{
         }
         stage('Stop sonarqube analysis') {
                 steps {
-                echo 'Stopping Sonar Qube analysis'
+                echo '**Stopping Sonar Qube analysis**'
                   withSonarQubeEnv('Test_Sonar') {
                         bat "dotnet ${scannerHome}\\SonarScanner.MSBuild.dll end"
 					   
                     }
-                echo 'Stopped Sonar Qube analysis'
+                echo '****Stopped Sonar Qube analysis****'
                 }
-            }
+            }        
         
-        stage('Release artfact'){
-            steps {
-                    script{
-                          echo 'Start building Docker image'
-                          dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
-                          echo 'Image built'
-                          echo 'Start pushing Docker image'
-                          docker.withRegistry( '', 'DockerDetail' ) {
-                                 dockerImage.push('latest') 
-                            }
-                            echo 'Image pushed'
-                        }
-                }
-         }
 		 stage('Kubernetes deployment'){
             steps {
-                    			
-					echo 'Creating Config Map' 
+					 script{
+						try {
+							  echo '**Start building Docker image**'
+							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
+							  echo '****Image built****'
+							  echo '**Start pushing Docker image**'
+							  docker.withRegistry( '', 'DockerDetail' ) {
+									 dockerImage.push('latest') 
+								}
+							  echo '****Image pushed****'
+							} catch (Throwable e) {
+								echo "Caught ${e.toString()}"
+								currentBuild.result = "SUCCESS" 
+							}
+						 
+						}
+						
+					gcloud auth login					
+					echo '**Creating Config Map**' 
                     bat 'kubectl apply -f .\\configmap.yml'
-					echo 'Config Map created' 
-					echo 'Creating Secret' 
+					echo '****Config Map created****' 
+					echo '**Creating Secret**' 
                     bat 'kubectl apply -f .\\secret.yml'
-					echo 'Secret created'
-				    echo 'Creating Deployment' 
+					echo '****Secret created****'
+				    echo '**Creating Deployment**' 
                     bat 'kubectl apply -f .\\deployment.yml'
-					echo 'Deployment created' 
+					echo '****Deployment created****' 
                 }
          }
 		 stage('End'){
 			 steps{
-				echo 'Success'				
+				echo '****Success****'				
 			 }
 		  		 
 		 }       
