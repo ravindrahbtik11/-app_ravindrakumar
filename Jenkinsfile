@@ -71,14 +71,13 @@ pipeline{
 							  echo '****Image built****'
 							  echo '**Start pushing Docker image**'
 							  docker.withRegistry( '', 'DockerDetail' ) {
-									 dockerImage.push('latest') 
+									 dockerImage.push('latest')
 								}
 							  echo '****Image pushed****'
 							} catch (Throwable e) {
 								echo "Caught ${e.toString()}"
 								currentBuild.result = "SUCCESS" 
-							}
-						 
+							}						 
 						}	
 					echo '****Done Image building and pushing into docker hub****'					
 										
