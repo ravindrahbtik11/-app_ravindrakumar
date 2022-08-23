@@ -15,7 +15,7 @@ pipeline{
 			steps {
 				echo '**Starting code check out**'
 				git branch: 'master', url: 'https://github.com/ravindrahbtik11/app_ravindrakumar.git'
-				 echo '****Code check out Finished****'
+				echo '****Code check out Finished****'
 			}
 		}
 		stage('Nuget restore'){
@@ -44,8 +44,10 @@ pipeline{
         }
 
         stage('Test case execution'){
-            steps {                
-                 bat "dotnet test"
+            steps {         
+				echo '**Test case execution**'
+                bat "dotnet test"
+                echo '****Test case execution****'	
             }
         }
         stage('Stop sonarqube analysis') {
@@ -61,22 +63,24 @@ pipeline{
         
 		 stage('Kubernetes deployment'){
             steps {
-					//  script{
-					// 	try {
-					// 		  echo '**Start building Docker image**'
-					// 		  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
-					// 		  echo '****Image built****'
-					// 		  echo '**Start pushing Docker image**'
-					// 		  docker.withRegistry( '', 'DockerDetail' ) {
-					// 				 dockerImage.push('latest') 
-					// 			}
-					// 		  echo '****Image pushed****'
-					// 		} catch (Throwable e) {
-					// 			echo "Caught ${e.toString()}"
-					// 			currentBuild.result = "SUCCESS" 
-					// 		}
+					echo '**Image building section**'
+					 script{
+						try {
+							  echo '**Start building Docker image**'
+							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-master:latest")
+							  echo '****Image built****'
+							  echo '**Start pushing Docker image**'
+							  docker.withRegistry( '', 'DockerDetail' ) {
+									 dockerImage.push('latest') 
+								}
+							  echo '****Image pushed****'
+							} catch (Throwable e) {
+								echo "Caught ${e.toString()}"
+								currentBuild.result = "SUCCESS" 
+							}
 						 
-					// 	}						
+						}	
+					echo '****Done Image building and pushing into docker hub****'					
 										
 					echo '**Creating Config Map**' 
                     bat 'kubectl apply -f .\\configmap.yml'
