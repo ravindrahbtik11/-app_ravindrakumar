@@ -31,19 +31,14 @@ pipeline{
             steps {
                     echo '**Start Releasing artifact**'
                     script{
-						try {
-                              echo '**Start building Docker image**'
+						    echo '**Start building Docker image**'
 							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-develop:latest")
 							  echo '****Image built****'
 							  echo '**Start pushing Docker image**'
 							  docker.withRegistry( '', 'DockerDetail' ) {
 									 dockerImage.push('latest') 
 								}
-							  echo '****Image pushed****'
-                            } catch (Throwable e) {
-                                echo "Caught ${e.toString()}"
-                                currentBuild.result = "SUCCESS" 
-                            }                         
+							echo '****Image pushed****'                         
                         }
                         // echo '**Start Releasing artifact**'
                         // bat "dotnet publish"
