@@ -30,19 +30,19 @@ pipeline{
 	stage('Release artifact'){
             steps {
                     echo '**Start Releasing artifact**'
-                    script{
-						    echo '**Start building Docker image**'
-							  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-develop:latest")
-							  echo '****Image built****'
-							  echo '**Start pushing Docker image**'
-							  docker.withRegistry( '', 'DockerDetail' ) {
-									 dockerImage.push('latest') 
-								}
-							echo '****Image pushed****'                         
-                        }
-                        // echo '**Start Releasing artifact**'
-                        // bat "dotnet publish"
-                        // echo '****Artifact Released****'
+                    // script{
+					// 	    echo '**Start building Docker image**'
+					// 		  dockerImage = docker.build("ravindrahbtik11/i-ravindrakumar-develop:latest")
+					// 		  echo '****Image built****'
+					// 		  echo '**Start pushing Docker image**'
+					// 		  docker.withRegistry( '', 'DockerDetail' ) {
+					// 				 dockerImage.push('latest') 
+					// 			}
+					// 		echo '****Image pushed****'                         
+                    //     }
+                        echo '**Start Releasing artifact**'
+                        bat "dotnet publish"
+                        echo '****Artifact Released****'
                 }
 	 }
 	 stage('Kubernetes deployment'){
