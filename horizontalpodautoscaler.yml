@@ -1,0 +1,13 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nagp-hpa-master
+  namespace: kubernetes-cluster-ravindrakumar
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nagp-dotnet-master
+  minReplicas: 4
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 60
